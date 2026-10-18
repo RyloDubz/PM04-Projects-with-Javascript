@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CHANGE: The browser tab now uses the new Super Collider Game Show name. -->
+  <meta name="theme-color" content="#160d2d">
+  <!-- CHANGE: Shortened the browser-tab title to reduce repeated full branding. -->
+  <title>Super Collider | Quiz Night</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="game-container">
+    <header class="top-bar">
+      <!-- CHANGE: Keep the full brand in one compact logo; use a short label everywhere else. -->
+      <a class="brand" href="#home-screen" aria-label="Super Collider quiz home"><span>SUPER<br>COLLIDER</span><small>QUIZ NIGHT</small></a>
+      <div class="score-display">SCORE <span id="score">0</span><small>/ 10</small></div>
+    </header>
+
+    <!-- Welcome screen: explains the quiz before the player starts. -->
+    <section id="home-screen" class="screen active">
+      <p class="eyebrow">THE LIGHTS ARE ON. THE PRESSURE IS REAL.</p>
+      <!-- CHANGE: Replaced repeated show-name text with a bold, punchy challenge headline. -->
+      <p class="show-mark" aria-hidden="true">SC</p>
+      <h1 class="hero-title">READY FOR THE<br><span>HOT SEAT?</span></h1>
+      <p class="intro">20 questions in the pool. 8 randomized questions per round. One surprise bonus round. How far can your knowledge take you?</p>
+      <div class="category-list">
+        <div><span>01</span> 🏆 SPORT</div>
+        <div><span>02</span> 🎬 MOVIES &amp; TV</div>
+        <div><span>03</span> 📜 HISTORY</div>
+      </div>
+      <div class="rules-grid">
+        <div><strong>20 SECONDS</strong><small>Per main question</small></div>
+        <div><strong>10 POINTS</strong><small>Maximum score</small></div>
+        <div><strong>50:50</strong><small>One lifeline</small></div>
+      </div>
+      <p class="surprise-note">Keep your eyes open for <strong>RED PANDA ROLL CALL!</strong> — a surprise animal-trivia bonus worth 2 points.</p>
+      <button id="start-btn" class="primary-btn">LET'S PLAY <span aria-hidden="true">→</span></button>
+      <p class="quiet-note">No music. No sound effects. Just you and the questions.</p>
+    </section>
+
+    <!-- Main quiz screen: question, timer, answers and lifeline. -->
+    <section id="quiz-screen" class="screen" aria-labelledby="question-text">
+      <div class="quiz-meta">
+        <span id="category-label">SPORT</span>
+        <span id="question-counter">QUESTION 1 OF 8</span>
+      </div>
+      <div class="progress-track" aria-label="Quiz progress"><div id="progress-bar"></div></div>
+      <div class="timer-row"><span>TIME LEFT</span><strong id="timer-text">20 seconds</strong></div>
+      <div class="timer-track"><div id="timer-bar"></div></div>
+      <div class="game-status"><span id="streak-display">STREAK: 0</span><span id="lifeline-status">50:50 AVAILABLE</span></div>
+      <h2 id="question-text">Question goes here</h2>
+      <div id="answers" class="answers"></div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+      <div class="quiz-actions">
+        <button id="lifeline-btn" class="secondary-btn" type="button">USE 50:50</button>
+        <button id="next-btn" class="primary-btn" type="button" hidden>NEXT QUESTION →</button>
+      </div>
+    </section>
+
+    <!-- Bonus introduction appears once during each game. -->
+    <section id="bonus-screen" class="screen bonus-screen">
+      <p class="eyebrow bonus-eyebrow">SURPRISE ROUND UNLOCKED</p>
+      <h1 class="bonus-splash">BONUS ROUND!</h1>
+      <div class="bonus-title">RED PANDA<br><span>ROLL CALL!</span></div>
+      <p class="bonus-description">Wild facts. Weird animals. Bonus points.</p>
+      <p class="bonus-subtitle">ONE RANDOM ANIMAL QUESTION. MAKE IT COUNT!</p>
+      <div class="bonus-points">+2 POINTS</div>
+      <button id="bonus-start-btn" class="primary-btn" type="button">BRING IT ON →</button>
+    </section>
+
+    <section id="bonus-question-screen" class="screen" aria-labelledby="bonus-question-text">
+      <div class="quiz-meta"><span class="bonus-label">🐾 RED PANDA ROLL CALL!</span><span>2 POINTS</span></div>
+      <h2 id="bonus-question-text"></h2>
+      <div id="bonus-answers" class="answers"></div>
+      <p id="bonus-feedback" class="feedback" aria-live="polite"></p>
+      <button id="bonus-next-btn" class="primary-btn" type="button" hidden>BACK TO THE QUIZ →</button>
+    </section>
+
+    <!-- Results screen shows the final score and rank. -->
+    <section id="results-screen" class="screen">
+      <p class="eyebrow">THAT'S A WRAP!</p>
+      <h1 id="result-heading">QUIZ COMPLETE!</h1>
+      <div class="final-score"><span id="final-score">0</span><small> / 10 POINTS</small></div>
+      <div class="result-rank" id="result-rank">QUIZ CONTENDER</div>
+      <p id="result-message"></p>
+      <p id="result-details" class="result-details"></p>
+      <p id="best-score" class="best-score"></p>
+      <button id="restart-btn" class="primary-btn" type="button">PLAY AGAIN ↻</button>
+    </section>
+
+    <!-- CHANGE: Footer now uses a short tagline instead of repeating the full show name. -->
+    <footer><p>TRUST YOUR BRAIN. QUESTION EVERYTHING.</p><p>8 RANDOM QUESTIONS · 3 CATEGORIES · ONE SHOT PER QUESTION</p></footer>
+  </main>
+</body>
+</html>

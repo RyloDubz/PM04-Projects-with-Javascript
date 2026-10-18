@@ -1,0 +1,227 @@
+/* CHANGE: Add distinctive display fonts for headings and buttons, while keeping body text easy to read. */
+/* Main game layout and colours are defined below. */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* THE SUPER COLLIDER GAME SHOW
+   Theme update: premium purple-and-gold studio look, with no audio assets or sound effects. */
+:root {
+  --bg: #10091f;
+  --panel: #1b1232;
+  --panel-light: #261846;
+  --purple: #8e5cff;
+  --purple-bright: #b59aff;
+  --gold: #f5c75e;
+  --gold-light: #ffe8a4;
+  --text: #fbf8ff;
+  --muted: #b9aecf;
+  --green: #3ed6a1;
+  --red: #ff667d;
+  --border: rgba(245, 199, 94, .27);
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); }
+body {
+  margin: 0; min-height: 100vh; padding: 28px 16px;
+  color: var(--text); font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background: radial-gradient(ellipse at 50% 0%, #35205b 0%, #1a1030 36%, var(--bg) 78%);
+}
+button { font: inherit; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 4px; }
+.game-container {
+  position: relative; overflow: hidden; width: min(100%, 820px); margin: 0 auto;
+  padding: clamp(18px, 4vw, 38px); border: 1px solid var(--border); border-radius: 24px;
+  background: linear-gradient(145deg, rgba(38, 24, 70, .97), rgba(19, 12, 36, .98));
+  box-shadow: 0 25px 90px rgba(0,0,0,.45), inset 0 1px rgba(255,255,255,.04);
+}
+.game-container::before { content: ""; position: absolute; inset: 0 12% auto; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.top-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.brand { display: flex; flex-direction: column; color: var(--text); text-decoration: none; font-weight: 800; font-size: .72rem; letter-spacing: .19em; line-height: 1.45; }
+.brand span { color: var(--gold); font-size: 1rem; letter-spacing: .1em; }
+.brand small { color: var(--muted); font-size: .62rem; letter-spacing: .32em; }
+.score-display { color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-align: right; white-space: nowrap; }
+.score-display span { display: inline-block; margin-left: 7px; color: var(--gold); font-size: 1.45rem; }
+.score-display small { color: var(--muted); font-size: .8rem; }
+.screen { display: none; padding: 34px 0 18px; animation: rise-in .32s ease both; }
+.screen.active { display: block; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.eyebrow { margin: 0 0 14px; color: var(--gold); font-size: .7rem; font-weight: 800; letter-spacing: .2em; text-align: center; }
+.show-mark { display: grid; place-items: center; width: 74px; height: 74px; margin: 0 auto 18px; border: 2px solid var(--gold); border-radius: 50%; color: var(--gold); font-size: 1.35rem; font-weight: 900; box-shadow: 0 0 0 7px rgba(245,199,94,.06), 0 0 34px rgba(245,199,94,.16); }
+h1, h2 { text-align: center; }
+h1 { margin: 0; font-size: clamp(1.85rem, 5.5vw, 3.2rem); line-height: 1.08; letter-spacing: -.04em; }
+h1 span, .bonus-title span { color: var(--gold); }
+.intro { max-width: 570px; margin: 18px auto 24px; color: var(--muted); line-height: 1.7; text-align: center; }
+.category-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 26px 0 16px; }
+.category-list div { display: flex; align-items: center; gap: 8px; min-height: 60px; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255,255,255,.035); font-size: .76rem; font-weight: 800; }
+.category-list div span { color: var(--gold); font-size: .66rem; }
+.rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0; }
+.rules-grid div { padding: 13px 8px; border-radius: 10px; background: rgba(142,92,255,.1); text-align: center; }
+.rules-grid strong, .rules-grid small { display: block; }
+.rules-grid strong { color: var(--gold); font-size: .85rem; }
+.rules-grid small { margin-top: 5px; color: var(--muted); font-size: .68rem; }
+.surprise-note { padding: 14px 16px; border-left: 3px solid var(--gold); border-radius: 0 10px 10px 0; background: rgba(245,199,94,.07); color: var(--muted); font-size: .86rem; line-height: 1.6; }
+.surprise-note strong { color: var(--gold); }
+.primary-btn, .secondary-btn { min-height: 48px; padding: 13px 20px; border: 0; border-radius: 10px; cursor: pointer; font-weight: 900; letter-spacing: .06em; transition: transform .15s, filter .15s, border-color .15s; }
+.primary-btn { color: #241635; background: linear-gradient(110deg, var(--gold-light), var(--gold)); box-shadow: 0 7px 22px rgba(245,199,94,.13); }
+.primary-btn:hover:not(:disabled), .secondary-btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.06); }
+#start-btn, #restart-btn { display: block; width: min(100%, 340px); margin: 22px auto 0; }
+.quiet-note { margin: 14px 0 0; color: #9386ad; font-size: .72rem; text-align: center; }
+.quiz-meta { display: flex; justify-content: space-between; gap: 12px; color: var(--gold); font-size: .7rem; font-weight: 900; letter-spacing: .11em; }
+.progress-track, .timer-track { overflow: hidden; width: 100%; border-radius: 99px; background: rgba(255,255,255,.1); }
+.progress-track { height: 5px; margin: 16px 0 21px; }
+#progress-bar { width: 0; height: 100%; background: linear-gradient(90deg, var(--purple), var(--gold)); transition: width .3s ease; }
+.timer-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: var(--muted); font-size: .68rem; font-weight: 800; letter-spacing: .1em; }
+#timer-text { color: var(--gold); }
+.timer-track { height: 8px; }
+#timer-bar { width: 100%; height: 100%; border-radius: inherit; background: var(--gold); transition: width 1s linear, background .2s; }
+#timer-bar.warning { background: var(--red); }
+.game-status { display: flex; justify-content: space-between; gap: 10px; margin: 17px 0 25px; color: var(--purple-bright); font-size: .68rem; font-weight: 900; letter-spacing: .1em; }
+h2 { margin: 0 auto 25px; max-width: 680px; font-size: clamp(1.25rem, 3.7vw, 1.85rem); line-height: 1.35; }
+.answers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.answer-btn { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 70px; padding: 14px; border: 1px solid rgba(181,154,255,.35); border-radius: 12px; color: var(--text); background: linear-gradient(110deg, rgba(142,92,255,.13), rgba(255,255,255,.025)); text-align: left; cursor: pointer; transition: border-color .15s, background .15s, transform .15s; }
+.answer-btn:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--gold); background: rgba(245,199,94,.08); }
+.answer-key { display: grid; flex: 0 0 30px; width: 30px; height: 30px; place-items: center; border: 1px solid rgba(245,199,94,.5); border-radius: 8px; color: var(--gold); font-size: .75rem; font-weight: 900; }
+.answer-btn.correct { border-color: var(--green); background: rgba(62,214,161,.12); }
+.answer-btn.correct .answer-key { border-color: var(--green); color: var(--green); }
+.answer-btn.wrong { border-color: var(--red); background: rgba(255,102,125,.1); }
+.answer-btn.wrong .answer-key { border-color: var(--red); color: var(--red); }
+.answer-btn:disabled { cursor: default; }
+.feedback { min-height: 24px; margin: 18px 0 8px; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+.feedback.good { color: var(--green); }
+.feedback.bad { color: #ff9aa9; }
+.quiz-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; }
+.secondary-btn { color: var(--gold-light); border: 1px solid var(--border); background: rgba(142,92,255,.12); }
+.secondary-btn:disabled { opacity: .4; cursor: not-allowed; }
+[hidden] { display: none !important; }
+.bonus-screen { text-align: center; }
+.bonus-eyebrow { color: var(--purple-bright); }
+.bonus-splash { color: var(--text); font-size: clamp(2rem, 7vw, 4rem); text-shadow: 0 0 26px rgba(142,92,255,.55); }
+.bonus-title { margin: 25px 0; color: var(--text); font-size: clamp(2rem, 7vw, 3.7rem); font-weight: 1000; line-height: 1.05; letter-spacing: -.04em; }
+.bonus-description { color: var(--muted); }
+.bonus-subtitle { color: var(--gold); font-size: .72rem; font-weight: 900; letter-spacing: .1em; line-height: 1.6; }
+.bonus-points { display: inline-block; margin: 14px 0; padding: 9px 16px; border: 1px solid var(--gold); border-radius: 999px; color: var(--gold); font-weight: 900; }
+.bonus-screen .primary-btn { display: block; margin: 18px auto 0; }
+.bonus-label { color: var(--gold); }
+.final-score { display: flex; justify-content: center; align-items: baseline; gap: 8px; margin: 25px 0 10px; color: var(--gold); }
+.final-score span { font-size: clamp(4rem, 14vw, 6.5rem); font-weight: 1000; line-height: 1; }
+.final-score small { color: var(--muted); font-weight: 800; }
+.result-rank { width: fit-content; margin: 0 auto 18px; padding: 9px 16px; border: 1px solid var(--gold); border-radius: 999px; color: var(--gold); font-size: .8rem; font-weight: 900; letter-spacing: .1em; }
+#result-message { color: var(--text); font-size: 1.05rem; text-align: center; }
+.result-details, .best-score { color: var(--muted); line-height: 1.6; text-align: center; }
+.best-score { color: var(--gold); font-weight: 800; }
+footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 22px; padding-top: 17px; border-top: 1px solid rgba(255,255,255,.08); color: #817596; font-size: .61rem; font-weight: 800; letter-spacing: .1em; }
+footer p { margin: 0; }
+@media (max-width: 580px) {
+  body { padding: 12px 8px; }
+  .game-container { border-radius: 17px; padding: 18px; }
+  .category-list { grid-template-columns: 1fr; }
+  .category-list div { min-height: 48px; }
+  .answers { grid-template-columns: 1fr; }
+  .answer-btn { min-height: 58px; }
+  .quiz-actions { flex-direction: column; }
+  .quiz-actions button { width: 100%; }
+  footer { flex-direction: column; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+
+/* LAYOUT UPDATE: Give desktop screens more room; keep the container fluid on smaller devices. */
+.game-container {
+  width: min(100%, 1180px); /* Was 820px: wider question stage and welcome screen. */
+  padding: clamp(22px, 4vw, 54px);
+}
+
+/* FONT UPDATE: Anton is used sparingly for high-impact headings; Barlow Condensed adds game-show energy to controls. */
+.brand span,
+h1,
+.bonus-splash,
+.bonus-title,
+.final-score span,
+.result-rank,
+.primary-btn,
+.secondary-btn,
+.quiz-meta,
+.category-list div,
+.rules-grid strong {
+  font-family: Anton, "Barlow Condensed", Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: .045em;
+}
+
+.brand span {
+  color: var(--gold);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  line-height: .95;
+  letter-spacing: .035em;
+}
+.brand small { margin-top: 5px; letter-spacing: .25em; }
+
+/* POP UPDATE: Oversized welcome headline makes the key words stand out instead of repeating the show name. */
+.hero-title {
+  font-family: Anton, Impact, sans-serif;
+  font-size: clamp(3rem, 8vw, 6.8rem);
+  line-height: .98;
+  letter-spacing: .005em;
+  text-shadow: 0 5px 0 rgba(0, 0, 0, .18), 0 0 30px rgba(142, 92, 255, .22);
+}
+.hero-title span {
+  color: var(--gold);
+  text-shadow: 0 0 28px rgba(245, 199, 94, .22);
+}
+
+/* QUESTION UPDATE: A little more breathing room on the wider screen helps the quiz feel like a studio stage. */
+#question-text, #bonus-question-text {
+  max-width: 940px;
+  font-family: "Barlow Condensed", Inter, sans-serif;
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+.answers { gap: 16px; }
+.answer-btn {
+  min-height: 82px;
+  padding: 18px 20px;
+  border-width: 1px;
+  border-radius: 15px;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  font-weight: 600;
+  box-shadow: inset 0 1px rgba(255,255,255,.04);
+}
+.answer-btn:hover:not(:disabled) {
+  box-shadow: 0 0 0 1px rgba(245,199,94,.2), 0 10px 28px rgba(0,0,0,.18);
+}
+.answer-key {
+  flex-basis: 38px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  font-family: Anton, Impact, sans-serif;
+  font-size: 1rem;
+}
+.primary-btn, .secondary-btn {
+  font-size: 1.05rem;
+  letter-spacing: .08em;
+}
+.primary-btn { padding-inline: 28px; }
+#start-btn, #restart-btn { width: min(100%, 400px); min-height: 58px; font-size: 1.25rem; }
+.show-mark { font-family: Anton, Impact, sans-serif; font-size: 1.6rem; }
+.category-list div { font-size: .95rem; }
+.rules-grid strong { font-size: 1.1rem; }
+footer { font-size: .65rem; }
+
+@media (min-width: 900px) {
+  .screen { padding-top: 48px; padding-bottom: 30px; }
+  .intro { max-width: 760px; font-size: 1.1rem; }
+  .category-list { gap: 16px; margin-top: 34px; }
+  .category-list div { min-height: 76px; padding: 18px; font-size: 1rem; }
+  .rules-grid { gap: 16px; margin: 24px 0; }
+  .rules-grid div { padding: 18px 12px; }
+}
+
+@media (max-width: 580px) {
+  /* Mobile safeguard: preserve readable type and avoid overflow after widening desktop styles. */
+  .game-container { width: 100%; padding: 18px; }
+  .hero-title { font-size: clamp(2.6rem, 13vw, 4.2rem); }
+  .brand span { font-size: 1rem; }
+  .answer-btn { min-height: 62px; padding: 13px; }
+  .quiz-meta { font-size: .62rem; }
+}

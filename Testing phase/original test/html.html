@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Impossible Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="game-container">
+
+    <header class="top-bar">
+      <div class="brand">THE <span>IMPOSSIBLE</span> QUIZ</div>
+      <div class="score-display">SCORE: <span id="score">0</span></div>
+    </header>
+
+    <section id="home-screen" class="screen active">
+      <p class="eyebrow">THINK YOU KNOW IT ALL?</p>
+      <h1>THE IMPOSSIBLE<br><span>GENERAL KNOWLEDGE QUIZ</span></h1>
+      <p class="intro">
+        Three categories. Eighteen questions. One chance to prove yourself.
+      </p>
+
+      <div class="category-list">
+        <div>🏆 SPORT</div>
+        <div>🎬 MOVIES &amp; TV</div>
+        <div>📜 HISTORY</div>
+      </div>
+
+      <p class="difficulty">DIFFICULTY: HARD</p>
+      <p class="surprise-note">
+        Keep your eyes open. A hidden bonus round could appear at any time...
+      </p>
+
+      <button id="start-btn" class="primary-btn">LET'S PLAY!</button>
+    </section>
+
+    <section id="quiz-screen" class="screen">
+      <div class="quiz-meta">
+        <span id="category-label">SPORT</span>
+        <span id="question-counter">QUESTION 1 OF 18</span>
+      </div>
+
+      <div class="timer-track">
+        <div id="timer-bar"></div>
+      </div>
+      <p id="timer-text">20 seconds</p>
+
+      <h2 id="question-text">Question goes here</h2>
+      <div id="answers" class="answers"></div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+
+      <button id="next-btn" class="primary-btn" hidden>NEXT QUESTION</button>
+    </section>
+
+    <section id="bonus-screen" class="screen bonus-screen">
+      <p class="eyebrow bonus-eyebrow">YOU'VE UNLOCKED A SURPRISE!</p>
+      <h1 class="bonus-splash">BONUS ROUND!</h1>
+      <div class="bonus-title">RED PANDA<br><span>ROLL CALL!</span></div>
+      <p class="bonus-description">
+        Wild facts. Weird animals. Bonus points.
+      </p>
+      <p class="bonus-subtitle">ONE RANDOM ANIMAL QUESTION. MAKE IT COUNT!</p>
+      <button id="bonus-start-btn" class="primary-btn">BRING IT ON!</button>
+    </section>
+
+    <section id="bonus-question-screen" class="screen">
+      <div class="quiz-meta">
+        <span class="bonus-label">🐾 RED PANDA ROLL CALL!</span>
+        <span>BONUS QUESTION</span>
+      </div>
+
+      <h2 id="bonus-question-text"></h2>
+      <div id="bonus-answers" class="answers"></div>
+      <p id="bonus-feedback" class="feedback" aria-live="polite"></p>
+      <button id="bonus-next-btn" class="primary-btn" hidden>
+        BACK TO THE QUIZ
+      </button>
+    </section>
+
+    <section id="results-screen" class="screen">
+      <p class="eyebrow">THAT'S A WRAP!</p>
+      <h1 id="result-heading">QUIZ COMPLETE!</h1>
+      <div class="final-score">
+        <span id="final-score">0</span>
+        <small>POINTS</small>
+      </div>
+      <p id="result-message"></p>
+      <p id="result-details" class="result-details"></p>
+      <button id="restart-btn" class="primary-btn">PLAY AGAIN</button>
+    </section>
+
+    <footer>
+      <p>TRUST YOUR BRAIN. QUESTION EVERYTHING.</p>
+    </footer>
+
+  </main>
+</body>
+</html>
